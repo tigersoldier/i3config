@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font pango:San Francisco Text, Noto Sans S Chinese, FontAwesome 11
+font pango:San Francisco Text, Noto Sans S Chinese, FontAwesome 20
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
@@ -87,15 +87,16 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $ws1 workspace ①
-set $ws2 workspace ②git5
-set $ws3 workspace ③citc
-set $ws4 workspace ④misc
+set $ws1 workspace ①
+set $ws2 workspace ②
+set $ws2 workspace ②
+set $ws3 workspace ③
+set $ws4 workspace ④
 set $ws5 workspace ⑤
 set $ws6 workspace ⑥
 set $ws7 workspace ⑦
-set $ws8 workspace ⑧
-set $ws9 workspace ⑨
+set $ws8 workspace ⑧
+set $ws9 workspace ⑨>_
 set $ws0 workspace ⑩
 
 # switch to workspace
@@ -169,3 +170,20 @@ bar {
 
 # lock screen
 bindsym $mod+Shift+m exec "i3lock"
+
+# Assigning apps to workspaces:
+
+## Emacs -> 1
+assign [class="Emacs"] → $ws1
+## Hangouts -> chat (8)
+assign [instance="^crx_nckgahadagoaajjgafhacjanaoiihapd$"] → $ws8
+## Terminal -> term (9)
+assign [class="^Gnome-terminal$"] → $ws9
+## Chrome -> browser (0)
+assign [class="^Google-chrome" instance="^google-chrome"] → $ws0
+
+## Start default apps
+exec xmodmap ~/.xmodmap
+exec emacs
+exec google-chrome-beta
+exec i3-sensible-terminal
